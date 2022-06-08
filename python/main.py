@@ -1,24 +1,9 @@
 import roboticstoolbox as rtb
-import numpy as np
-import math
-from spatialmath import *
-from spatialmath.base import *
 from spatialmath.base.symbolic import *
-import time
 from roboticstoolbox.tools.trajectory import *
 
 
-def projekcik():
-    '''
-    robot=rtb.DHRobot(
-        [
-            rtb.RevoluteDH(d=symbol('l1'), alpha=pi()/2, offset=pi()/2),
-            rtb.PrismaticDH(offset=symbol('l2')),
-            rtb.RevoluteDH(a=symbol('l3'))
-        ], name="RPR")
-    for links in robot.links:
-        print(links)
-    '''
+def projekt():
 
     #inicjacja
 
@@ -33,6 +18,9 @@ def projekcik():
     l3=0.221314
     theta3_min=0
     theta3_max= 2 * np.pi
+
+    q_tmp = [symbol('θ1'), symbol('d2'), symbol('θ3')]
+
     robot=rtb.DHRobot(
         [
             rtb.RevoluteDH(d=l1, alpha=alpha1, offset=offset1, qlim=[theta1_min, theta1_max]),
@@ -45,7 +33,6 @@ def projekcik():
 
     #kinematyka prosta
 
-    q_tmp=[symbol('θ1'),symbol('d2'), symbol('θ3')]
     T=robot.fkine(q_tmp)
     print(T)
 
@@ -57,4 +44,4 @@ def projekcik():
     #dynamika - na kartce
 
 if __name__ == '__main__':
-    projekcik()
+    projekt()
