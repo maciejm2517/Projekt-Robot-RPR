@@ -7,23 +7,37 @@ def projekt():
 
     #inicjacja
 
-    l1=0.42+0.15/2
+    l1=0.4925
     l2=0.5
     alpha1=np.pi/2
     offset1=np.pi/2
     theta1_min=0
-    theta1_max=np.pi
+    theta1_max=195/360*2*np.pi
     d2_min=0
-    d2_max=0.4
+    d2_max=0.38
     l3=0.221314
     theta3_min=0
     theta3_max= 2 * np.pi
 
     q_tmp = [symbol('θ1'), symbol('d2'), symbol('θ3')]
 
+    '''
+    #obliczenia na symbolach
+    
+    robot=rtb.DHRobot(
+    [
+        rtb.RevoluteDH(d=symbol('l1'), alpha=pi()/2, offset=pi()/2),
+        rtb.PrismaticDH(offset=symbol('l2')),
+        rtb.RevoluteDH(d=symbol('l3'))
+    ], name="RPR")
+    q_tmp = [symbol('θ1'), symbol('d2'), symbol('θ3')]
+    
+    '''
+
     robot=rtb.DHRobot(
         [
-            rtb.RevoluteDH(d=l1, alpha=alpha1, offset=offset1, qlim=[theta1_min, theta1_max]),
+            rtb.RevoluteDH(d=l1, alpha=alpha1, offset=offset1,
+            qlim=[theta1_min, theta1_max]),
             rtb.PrismaticDH(offset=l2, qlim=[d2_min,d2_max]),
             rtb.RevoluteDH(qlim=[theta3_min, theta3_max], d=l3),
         ], name="RPR")

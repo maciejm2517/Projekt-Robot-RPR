@@ -1,0 +1,3 @@
+H=Minimalna odległość	68.225 mm
+R_out=Minimalna odległość	1101.314 mm
+R_in=Minimalna odległość	1060.000 mm
